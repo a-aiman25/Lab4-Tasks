@@ -1,0 +1,65 @@
+# Lab4
+# Home Task
+
+# Task1
+import java.util.Scanner;
+public class Lab4Task1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double[] numbers = new double[7];
+        double sum = 0;
+        System.out.println("Enter 7 real numbers:");
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = sc.nextDouble();
+            sum += numbers[i];
+        }
+        double mean = sum / numbers.length;
+        System.out.println("Sum of all elements: " + sum);
+        System.out.println("Mean of all elements: " + mean);
+        sc.close();
+    }
+}
+
+# Task2
+import java.util.Arrays;
+import java.util.Scanner;
+public class Lab4Task2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double[] numbers = new double[7];
+        double sum = 0;
+        System.out.println("Enter 7 real numbers:");
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = sc.nextDouble();
+            sum += numbers[i];
+        }
+        double mean = sum / numbers.length;
+        System.out.println("Sum of all elements: " + sum);
+        System.out.println("Mean of all elements: " + mean);
+        System.out.print("Enter a key to split the array: ");
+        double key = sc.nextDouble();
+        double[][] splitArrays = splitArrayAtKey(numbers, key);
+        if (splitArrays != null) {
+            System.out.println("Array before the key (inclusive): " + Arrays.toString(splitArrays[0]));
+            System.out.println("Array after the key: " + Arrays.toString(splitArrays[1]));
+        } else {
+            System.out.println("Key not found in the array.");
+        }
+        sc.close();
+    }
+    public static double[][] splitArrayAtKey(double[] array, double key) {
+        int keyIndex = -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == key) {
+                keyIndex = i;
+                break;
+            }
+        }
+        if (keyIndex == -1) {
+            return null;
+        }
+        double[] firstPart = Arrays.copyOfRange(array, 0, keyIndex + 1);
+        double[] secondPart = Arrays.copyOfRange(array, keyIndex + 1, array.length);
+        return new double[][]{firstPart, secondPart};
+    }
+}
